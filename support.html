@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Valentine Gift AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #800020 0%, #2C0A1E 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        h1 a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        
+        #langSwitch {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .support-content {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 40px 0;
+        }
+        
+        .contact-info {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .contact-info h3 {
+            color: #FFD700;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+        
+        .contact-item a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .faq {
+            margin: 40px 0;
+        }
+        
+        .faq h3 {
+            color: #FFD700;
+            font-size: 1.6rem;
+            margin: 30px 0 20px 0;
+        }
+        
+        .faq-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .faq-item h4 {
+            color: #FFD700;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .faq-item p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .btn-back {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #2C0A1E;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin: 20px auto;
+            display: block;
+            width: fit-content;
+        }
+        
+        .btn-back:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 60px;
+        }
+        
+        .lang-text {
+            display: none;
+        }
+        
+        .lang-text.active {
+            display: block;
+        }
+        
+        .lang-text.active.inline {
+            display: inline;
+        }
+        
+        @media (max-width: 768px) {
+            .support-content {
+                padding: 30px 20px;
+            }
+            
+            .page-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">💝 Valentine Gift AI</a></h1>
+            <button id="langSwitch" onclick="toggleLang()">🇬🇧 EN</button>
+        </header>
+        
+        <div class="page-title">
+            <h2>
+                <span class="lang-text fr active">Support & Contact</span>
+                <span class="lang-text en">Support & Contact</span>
+            </h2>
+            <p>
+                <span class="lang-text fr active">Nous sommes là pour vous aider !</span>
+                <span class="lang-text en">We're here to help you!</span>
+            </p>
+        </div>
+
+        <div class="support-content">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h3>
+                    <span class="lang-text fr active">📧 Contactez-nous</span>
+                    <span class="lang-text en">📧 Contact Us</span>
+                </h3>
+                
+                <div class="contact-item">
+                    <strong>
+                        <span class="lang-text fr active">Email :</span>
+                        <span class="lang-text en">Email:</span>
+                    </strong><br>
+                    <a href="mailto:paytrack24@gmail.com">paytrack24@gmail.com</a>
+                </div>
+                
+                <div class="contact-item">
+                    <strong>
+                        <span class="lang-text fr active">Créateur :</span>
+                        <span class="lang-text en">Creator:</span>
+                    </strong><br>
+                    Sony Belizaire
+                </div>
+                
+                <div class="contact-item">
+                    <strong>
+                        <span class="lang-text fr active">Temps de réponse :</span>
+                        <span class="lang-text en">Response time:</span>
+                    </strong><br>
+                    <span class="lang-text fr active">24-48 heures</span>
+                    <span class="lang-text en">24-48 hours</span>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="faq">
+                <h3>
+                    <span class="lang-text fr active">❓ Questions Fréquentes</span>
+                    <span class="lang-text en">❓ Frequently Asked Questions</span>
+                </h3>
+
+                <div class="lang-text fr active">
+                    <div class="faq-item">
+                        <h4>Quand vais-je recevoir mes cartes ?</h4>
+                        <p>Après paiement confirmé, vous recevrez vos 6 cartes Valentine en haute qualité par email dans les 24 heures.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>Puis-je obtenir un remboursement ?</h4>
+                        <p>Les paiements crypto sont définitifs, mais nous garantissons la satisfaction. Contactez-nous en cas de problème.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>Les cartes sont-elles vraiment personnalisées ?</h4>
+                        <p>Oui ! Chaque carte est générée avec vos photos par notre IA professionnelle nano-banana-pro.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>Quelle est la qualité des images ?</h4>
+                        <p>Toutes les cartes sont en haute résolution, format portrait 3:4, parfaites pour impression ou partage digital.</p>
+                    </div>
+                </div>
+
+                <div class="lang-text en">
+                    <div class="faq-item">
+                        <h4>When will I receive my cards?</h4>
+                        <p>After confirmed payment, you'll receive your 6 high-quality Valentine cards by email within 24 hours.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>Can I get a refund?</h4>
+                        <p>Crypto payments are final, but we guarantee satisfaction. Contact us if you have any issues.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>Are the cards really personalized?</h4>
+                        <p>Yes! Each card is generated with your photos by our professional AI nano-banana-pro.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>What's the image quality?</h4>
+                        <p>All cards are in high resolution, portrait format 3:4, perfect for printing or digital sharing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn-back">
+                <span class="lang-text fr active inline">← Retour à l'accueil</span>
+                <span class="lang-text en inline">← Back to Home</span>
+            </a>
+        </div>
+
+        <footer>
+            <p>
+                <span class="lang-text fr active">Créé avec ❤️ par</span>
+                <span class="lang-text en">Created with ❤️ by</span>
+                <strong>Sony Belizaire</strong><br>
+                <span style="opacity: 0.7;">Contact: paytrack24@gmail.com</span>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        let currentLang = 'fr';
+
+        function toggleLang() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            document.getElementById('langSwitch').innerHTML = currentLang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR';
+            
+            document.querySelectorAll('.lang-text').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.querySelectorAll(`.lang-text.${currentLang}`).forEach(el => {
+                el.classList.add('active');
+            });
+        }
+    </script>
+</body>
+</html>
