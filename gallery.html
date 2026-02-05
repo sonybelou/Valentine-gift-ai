@@ -389,6 +389,19 @@
             document.querySelectorAll('.lang-text').forEach(el => {
                 el.classList.remove('active');
             });
+            // Load uploaded photos from localStorage
+        window.addEventListener('DOMContentLoaded', function() {
+            const photo1 = localStorage.getItem('photo1');
+            const photo2 = localStorage.getItem('photo2');
+            
+            if (!photo1 || !photo2) {
+                const message = currentLang === 'fr'
+                    ? 'Vous devez d\'abord uploader vos photos !'
+                    : 'You must upload your photos first!';
+                alert(message);
+                window.location.href = 'upload.html';
+            }
+        });
             
             document.querySelectorAll(`.lang-text.${currentLang}`).forEach(el => {
                 el.classList.add('active');
