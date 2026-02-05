@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Valentine Gift AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #800020 0%, #2C0A1E 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        h1 a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        
+        #langSwitch {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .payment-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.7);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+        
+        .payment-card h3 {
+            color: #FFD700;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .qr-code {
+            width: 280px;
+            height: 280px;
+            background: white;
+            margin: 30px auto;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #800020;
+        }
+        
+        .payment-label {
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+            opacity: 0.9;
+        }
+        
+        .payment-address {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        
+        .payment-amount {
+            font-size: 2.5rem;
+            color: #FFD700;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .btn-confirm {
+            display: inline-block;
+            background: linear-gradient(135deg, #00FF00 0%, #00AA00 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 30px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-confirm:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.4);
+        }
+        
+        .instructions {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .instructions h3 {
+            color: #FFD700;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .instructions ol {
+            list-style-position: inside;
+            line-height: 2;
+            font-size: 1.1rem;
+        }
+        
+        .instructions li {
+            margin: 10px 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 60px;
+        }
+        
+        .lang-text {
+            display: none;
+        }
+        
+        .lang-text.active {
+            display: block;
+        }
+        
+        .lang-text.active.inline {
+            display: inline;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title h2 {
+                font-size: 2rem;
+            }
+            
+            .qr-code {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">💝 Valentine Gift AI</a></h1>
+            <button id="langSwitch" onclick="toggleLang()">🇬🇧 EN</button>
+        </header>
+        
+        <div class="page-title">
+            <h2>
+                <span class="lang-text fr active">Paiement Sécurisé</span>
+                <span class="lang-text en">Secure Payment</span>
+            </h2>
+            <p>
+                <span class="lang-text fr active">Choisissez votre méthode de paiement crypto</span>
+                <span class="lang-text en">Choose your crypto payment method</span>
+            </p>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>
+                <span class="lang-text fr active">📋 Comment payer ?</span>
+                <span class="lang-text en">📋 How to Pay?</span>
+            </h3>
+            <ol class="lang-text fr active">
+                <li>Scannez le QR code avec votre wallet crypto</li>
+                <li>Ou copiez l'adresse de paiement manuellement</li>
+                <li>Envoyez exactement <strong>2.5 USDT</strong></li>
+                <li>Cliquez sur "J'ai payé" après l'envoi</li>
+                <li>Vous recevrez vos cartes dans quelques minutes !</li>
+            </ol>
+            <ol class="lang-text en">
+                <li>Scan the QR code with your crypto wallet</li>
+                <li>Or copy the payment address manually</li>
+                <li>Send exactly <strong>2.5 USDT</strong></li>
+                <li>Click "I've Paid" after sending</li>
+                <li>You'll receive your cards in a few minutes!</li>
+            </ol>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="payment-methods">
+            <!-- TON Payment -->
+            <div class="payment-card">
+                <h3>💎 TON Network</h3>
+                
+                <div class="qr-code">
+                    📱<br>
+                    <small style="font-size: 1rem;">Scan to pay</small>
+                </div>
+                
+                <p class="payment-label">
+                    <span class="lang-text fr active">Montant à envoyer :</span>
+                    <span class="lang-text en">Amount to send:</span>
+                </p>
+                <div class="payment-amount">2.5 USDT</div>
+                
+                <p class="payment-label">
+                    <span class="lang-text fr active">Adresse TON :</span>
+                    <span class="lang-text en">TON Address:</span>
+                </p>
+                <div class="payment-address">
+                    UQDnHIlsVEFRh1P7LoHgmbE9sklLHK0ih-w0WhNt-Dq22U9u
+                </div>
+                
+                <button class="btn-confirm" onclick="confirmPayment('TON')">
+                    <span class="lang-text fr active inline">✅ J'ai payé</span>
+                    <span class="lang-text en inline">✅ I've Paid</span>
+                </button>
+            </div>
+
+            <!-- TRC20 Payment -->
+            <div class="payment-card">
+                <h3>🔷 USDT (TRC20)</h3>
+                
+                <div class="qr-code">
+                    📱<br>
+                    <small style="font-size: 1rem;">Scan to pay</small>
+                </div>
+                
+                <p class="payment-label">
+                    <span class="lang-text fr active">Montant à envoyer :</span>
+                    <span class="lang-text en">Amount to send:</span>
+                </p>
+                <div class="payment-amount">2.5 USDT</div>
+                
+                <p class="payment-label">
+                    <span class="lang-text fr active">Adresse TRC20 :</span>
+                    <span class="lang-text en">TRC20 Address:</span>
+                </p>
+                <div class="payment-address">
+                    TH9dVuY3bfNpWPLgSTNRXRy2Gk61UXt2gN
+                </div>
+                
+                <button class="btn-confirm" onclick="confirmPayment('TRC20')">
+                    <span class="lang-text fr active inline">✅ J'ai payé</span>
+                    <span class="lang-text en inline">✅ I've Paid</span>
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                <span class="lang-text fr active">Créé avec ❤️ par</span>
+                <span class="lang-text en">Created with ❤️ by</span>
+                <strong>Sony Belizaire</strong><br>
+                <span style="opacity: 0.7;">Contact: paytrack24@gmail.com</span>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        let currentLang = 'fr';
+
+        function toggleLang() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            document.getElementById('langSwitch').innerHTML = currentLang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR';
+            
+            document.querySelectorAll('.lang-text').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.querySelectorAll(`.lang-text.${currentLang}`).forEach(el => {
+                el.classList.add('active');
+            });
+        }
+
+        function confirmPayment(method) {
+            const message = currentLang === 'fr' 
+                ? `Merci ! Votre paiement ${method} est en cours de vérification. Vous recevrez vos cartes Valentine par email à paytrack24@gmail.com dans quelques minutes ! 💝`
+                : `Thank you! Your ${method} payment is being verified. You'll receive your Valentine cards by email at paytrack24@gmail.com in a few minutes! 💝`;
+            
+            alert(message);
+            window.location.href = 'support.html';
+        }
+    </script>
+</body>
+</html>
