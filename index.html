@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Gift AI - Sony ♥ Melencia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #800020 0%, #2C0A1E 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        #langSwitch {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        #langSwitch:hover {
+            background: rgba(255, 215, 0, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #2C0A1E;
+            padding: 18px 45px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.6);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .feature p {
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 60px;
+        }
+        
+        .lang-text {
+            display: none;
+        }
+        
+        .lang-text.active {
+            display: block;
+        }
+        
+        .lang-text.active.inline {
+            display: inline;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💝 Valentine Gift AI</h1>
+            <button id="langSwitch" onclick="toggleLang()">🇬🇧 EN</button>
+        </header>
+        
+        <div class="hero">
+            <h2>
+                <span class="lang-text fr active">Créez votre carte de Saint-Valentin personnalisée</span>
+                <span class="lang-text en">Create Your Personalized Valentine Card</span>
+            </h2>
+            
+            <p>
+                <span class="lang-text fr active">
+                    <strong>Sony ♥ Melencia</strong><br>
+                    6 thèmes magnifiques • Vos photos • Poèmes d'amour uniques<br>
+                    Généré par IA professionnelle • Téléchargement haute qualité
+                </span>
+                <span class="lang-text en">
+                    <strong>Sony ♥ Melencia</strong><br>
+                    6 Beautiful Themes • Your Photos • Unique Love Poems<br>
+                    Professional AI-generated • High Quality Download
+                </span>
+            </p>
+            
+            <a href="#gallery" class="btn-primary">
+                <span class="lang-text fr active inline">✨ Voir la galerie</span>
+                <span class="lang-text en inline">✨ View Gallery</span>
+            </a>
+        </div>
+
+        <section class="features">
+            <div class="feature">
+                <span class="icon">🎨</span>
+                <h3>
+                    <span class="lang-text fr active">6 Thèmes Uniques</span>
+                    <span class="lang-text en">6 Unique Themes</span>
+                </h3>
+                <p>
+                    <span class="lang-text fr active">Animaux, Nature, Fleurs, Univers, Minimal, Cute</span>
+                    <span class="lang-text en">Animals, Nature, Flowers, Universe, Minimal, Cute</span>
+                </p>
+            </div>
+            
+            <div class="feature">
+                <span class="icon">💎</span>
+                <h3>
+                    <span class="lang-text fr active">Haute Qualité</span>
+                    <span class="lang-text en">High Quality</span>
+                </h3>
+                <p>
+                    <span class="lang-text fr active">Images générées par IA professionnelle nano-banana-pro</span>
+                    <span class="lang-text en">Professional AI-generated images with nano-banana-pro</span>
+                </p>
+            </div>
+            
+            <div class="feature">
+                <span class="icon">💳</span>
+                <h3>
+                    <span class="lang-text fr active">Paiement Crypto</span>
+                    <span class="lang-text en">Crypto Payment</span>
+                </h3>
+                <p>
+                    <span class="lang-text fr active">Seulement 2.5 USDT • TON & TRC20 acceptés • QR codes scannables</span>
+                    <span class="lang-text en">Only 2.5 USDT • TON & TRC20 accepted • Scannable QR codes</span>
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            <p>
+                <span class="lang-text fr active">Créé avec ❤️ par</span>
+                <span class="lang-text en">Created with ❤️ by</span>
+                <strong>Sony Belizaire</strong><br>
+                <span style="opacity: 0.7;">Contact: paytrack24@gmail.com</span>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        let currentLang = 'fr';
+
+        function toggleLang() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            
+            // Update button
+            document.getElementById('langSwitch').innerHTML = currentLang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR';
+            
+            // Hide all language texts
+            document.querySelectorAll('.lang-text').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show current language
+            document.querySelectorAll(`.lang-text.${currentLang}`).forEach(el => {
+                el.classList.add('active');
+            });
+        }
+    </script>
+</body>
+</html>
