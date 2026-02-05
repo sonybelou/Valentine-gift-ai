@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Photos - Valentine Gift AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #800020 0%, #2C0A1E 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        h1 a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        
+        #langSwitch {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .upload-section {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 40px 0;
+        }
+        
+        .upload-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .upload-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 3px dashed rgba(255, 215, 0, 0.5);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .upload-box:hover {
+            border-color: #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .upload-box.has-image {
+            border-style: solid;
+            border-color: #FFD700;
+        }
+        
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .upload-box h3 {
+            color: #FFD700;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        
+        .upload-box p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 250px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .preview-image.show {
+            display: block;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .btn-generate {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #2C0A1E;
+            padding: 18px 50px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            border: none;
+            cursor: pointer;
+            margin: 30px auto;
+            display: block;
+        }
+        
+        .btn-generate:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+        
+        .btn-generate:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .instructions {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .instructions h3 {
+            color: #FFD700;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .instructions ul {
+            list-style-position: inside;
+            line-height: 2;
+            font-size: 1.1rem;
+        }
+        
+        .instructions li {
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+        
+        .remove-btn {
+            background: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .remove-btn:hover {
+            background: rgba(255, 0, 0, 0.9);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 60px;
+        }
+        
+        .lang-text {
+            display: none;
+        }
+        
+        .lang-text.active {
+            display: block;
+        }
+        
+        .lang-text.active.inline {
+            display: inline;
+        }
+        
+        @media (max-width: 768px) {
+            .upload-section {
+                padding: 30px 20px;
+            }
+            
+            .upload-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">💝 Valentine Gift AI</a></h1>
+            <button id="langSwitch" onclick="toggleLang()">🇬🇧 EN</button>
+        </header>
+        
+        <div class="page-title">
+            <h2>
+                <span class="lang-text fr active">Uploadez vos photos</span>
+                <span class="lang-text en">Upload Your Photos</span>
+            </h2>
+            <p>
+                <span class="lang-text fr active">
+                    Ajoutez 2 photos de votre couple pour créer vos cartes Valentine personnalisées<br>
+                    <strong>Sony ♥ Melencia</strong>
+                </span>
+                <span class="lang-text en">
+                    Add 2 photos of your couple to create personalized Valentine cards<br>
+                    <strong>Sony ♥ Melencia</strong>
+                </span>
+            </p>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>
+                <span class="lang-text fr active">📸 Conseils pour de meilleures cartes</span>
+                <span class="lang-text en">📸 Tips for Better Cards</span>
+            </h3>
+            <ul class="lang-text fr active">
+                <li>✅ Utilisez des photos claires avec bon éclairage</li>
+                <li>✅ Les visages doivent être bien visibles</li>
+                <li>✅ Photos de face ou légèrement de profil</li>
+                <li>✅ Fond simple recommandé</li>
+                <li>✅ Format JPG ou PNG accepté</li>
+            </ul>
+            <ul class="lang-text en">
+                <li>✅ Use clear photos with good lighting</li>
+                <li>✅ Faces should be clearly visible</li>
+                <li>✅ Front or slightly profile photos</li>
+                <li>✅ Simple background recommended</li>
+                <li>✅ JPG or PNG format accepted</li>
+            </ul>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <div class="upload-grid">
+                <!-- Photo 1 -->
+                <div class="upload-box" id="uploadBox1" onclick="document.getElementById('file1').click()">
+                    <img id="preview1" class="preview-image" alt="Preview 1">
+                    <div id="placeholder1">
+                        <div class="upload-icon">📷</div>
+                        <h3>
+                            <span class="lang-text fr active">Photo 1</span>
+                            <span class="lang-text en">Photo 1</span>
+                        </h3>
+                        <p>
+                            <span class="lang-text fr active">Cliquez pour ajouter<br>la première photo</span>
+                            <span class="lang-text en">Click to add<br>the first photo</span>
+                        </p>
+                    </div>
+                    <button class="remove-btn" id="remove1" style="display:none;" onclick="removeImage(1, event)">
+                        <span class="lang-text fr active inline">🗑️ Supprimer</span>
+                        <span class="lang-text en inline">🗑️ Remove</span>
+                    </button>
+                    <input type="file" id="file1" accept="image/jpeg,image/png" onchange="handleFileSelect(1, event)">
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="upload-box" id="uploadBox2" onclick="document.getElementById('file2').click()">
+                    <img id="preview2" class="preview-image" alt="Preview 2">
+                    <div id="placeholder2">
+                        <div class="upload-icon">📷</div>
+                        <h3>
+                            <span class="lang-text fr active">Photo 2</span>
+                            <span class="lang-text en">Photo 2</span>
+                        </h3>
+                        <p>
+                            <span class="lang-text fr active">Cliquez pour ajouter<br>la deuxième photo</span>
+                            <span class="lang-text en">Click to add<br>the second photo</span>
+                        </p>
+                    </div>
+                    <button class="remove-btn" id="remove2" style="display:none;" onclick="removeImage(2, event)">
+                        <span class="lang-text fr active inline">🗑️ Supprimer</span>
+                        <span class="lang-text en inline">🗑️ Remove</span>
+                    </button>
+                    <input type="file" id="file2" accept="image/jpeg,image/png" onchange="handleFileSelect(2, event)">
+                </div>
+            </div>
+
+            <button class="btn-generate" id="generateBtn" disabled onclick="generateCards()">
+                <span class="lang-text fr active inline">✨ Générer mes cartes Valentine</span>
+                <span class="lang-text en inline">✨ Generate My Valentine Cards</span>
+            </button>
+        </div>
+
+        <footer>
+            <p>
+                <span class="lang-text fr active">Créé avec ❤️ par</span>
+                <span class="lang-text en">Created with ❤️ by</span>
+                <strong>Sony Belizaire</strong><br>
+                <span style="opacity: 0.7;">Contact: paytrack24@gmail.com</span>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        let currentLang = 'fr';
+        let uploadedFiles = {
+            photo1: null,
+            photo2: null
+        };
+
+        function toggleLang() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            document.getElementById('langSwitch').innerHTML = currentLang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR';
+            
+            document.querySelectorAll('.lang-text').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.querySelectorAll(`.lang-text.${currentLang}`).forEach(el => {
+                el.classList.add('active');
+            });
+        }
+
+        function handleFileSelect(photoNum, event) {
+            event.stopPropagation();
+            const file = event.target.files[0];
+            
+            if (file && file.type.match('image.*')) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const preview = document.getElementById(`preview${photoNum}`);
+                    const placeholder = document.getElementById(`placeholder${photoNum}`);
+                    const uploadBox = document.getElementById(`uploadBox${photoNum}`);
+                    const removeBtn = document.getElementById(`remove${photoNum}`);
+                    
+                    preview.src = e.target.result;
+                    preview.classList.add('show');
+                    placeholder.style.display = 'none';
+                    uploadBox.classList.add('has-image');
+                    removeBtn.style.display = 'block';
+                    
+                    uploadedFiles[`photo${photoNum}`] = file;
+                    checkBothPhotos();
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeImage(photoNum, event) {
+            event.stopPropagation();
+            
+            const preview = document.getElementById(`preview${photoNum}`);
+            const placeholder = document.getElementById(`placeholder${photoNum}`);
+            const uploadBox = document.getElementById(`uploadBox${photoNum}`);
+            const removeBtn = document.getElementById(`remove${photoNum}`);
+            const fileInput = document.getElementById(`file${photoNum}`);
+            
+            preview.src = '';
+            preview.classList.remove('show');
+            placeholder.style.display = 'block';
+            uploadBox.classList.remove('has-image');
+            removeBtn.style.display = 'none';
+            fileInput.value = '';
+            
+            uploadedFiles[`photo${photoNum}`] = null;
+            checkBothPhotos();
+        }
+
+        function checkBothPhotos() {
+            const generateBtn = document.getElementById('generateBtn');
+            
+            if (uploadedFiles.photo1 && uploadedFiles.photo2) {
+                generateBtn.disabled = false;
+            } else {
+                generateBtn.disabled = true;
+            }
+        }
+
+        function generateCards() {
+            // Save photos to localStorage (for demo purposes)
+            // In production, you'd upload to a server
+            localStorage.setItem('photo1', document.getElementById('preview1').src);
+            localStorage.setItem('photo2', document.getElementById('preview2').src);
+            
+            const message = currentLang === 'fr'
+                ? 'Photos enregistrées ! Redirection vers la galerie...'
+                : 'Photos saved! Redirecting to gallery...';
+            
+            alert(message);
+            window.location.href = 'gallery.html';
+        }
+    </script>
+</body>
+</html>
