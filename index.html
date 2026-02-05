@@ -151,7 +151,53 @@
         .lang-text.active.inline {
             display: inline;
         }
+        /* Navigation Menu */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(44, 10, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+        }
         
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s;
+            padding: 5px 15px;
+            border-radius: 10px;
+        }
+        
+        .nav-item:hover {
+            color: #FFD700;
+            transform: translateY(-3px);
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .nav-item.active {
+            color: #FFD700;
+            background: rgba(255, 215, 0, 0.15);
+        }
+        
+        .nav-item span {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .nav-item small {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.5rem;
@@ -250,7 +296,34 @@
             </p>
         </footer>
     </div>
-    
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <span>🏠</span>
+            <small class="lang-text fr active">Accueil</small>
+            <small class="lang-text en">Home</small>
+        </a>
+        <a href="upload.html" class="nav-item">
+            <span>📤</span>
+            <small class="lang-text fr active">Upload</small>
+            <small class="lang-text en">Upload</small>
+        </a>
+        <a href="gallery.html" class="nav-item">
+            <span>🎨</span>
+            <small class="lang-text fr active">Galerie</small>
+            <small class="lang-text en">Gallery</small>
+        </a>
+        <a href="payment.html" class="nav-item">
+            <span>💳</span>
+            <small class="lang-text fr active">Payer</small>
+            <small class="lang-text en">Pay</small>
+        </a>
+        <a href="support.html" class="nav-item">
+            <span>📞</span>
+            <small class="lang-text fr active">Support</small>
+            <small class="lang-text en">Support</small>
+        </a>
+    </nav>
     <script>
         let currentLang = 'fr';
 
